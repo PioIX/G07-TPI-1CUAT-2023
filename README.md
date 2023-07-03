@@ -35,3 +35,4 @@ El usuario podrá realizar esta serie de acciones:
 
 - JavaScript
 - SQL3
+- NodeJS
