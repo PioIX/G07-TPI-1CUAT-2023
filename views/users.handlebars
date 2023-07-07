@@ -1,0 +1,26 @@
+
+<div class="users-questions-container">
+    <div class="users-outer-wrapper">
+        <div class="users-table-wrapper">
+            <form action="/gotousers" id="formuserremove"></form>
+            <table>
+                <thead>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Usuario</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    {{# each users}}
+                        <tr>    
+                            <td>{{name}}</td>
+                            <td>{{surname}}</td>
+                            <td>{{user}}</td>
+                            <td><button style="font-size:18px" class="x" onclick="userRemove({{idUsers}})">❌</button></td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
