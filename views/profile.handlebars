@@ -1,0 +1,110 @@
+{{!-- <div class="header">
+    <div id="logo-menu" class="logo-menu">
+        <ul class="menu-horizontal">
+            <li>
+                <a><img src="img/menu.png" alt="menu" class="menu"></a>
+                <ul id="menu-vertical" class="menu-vertical">
+                    <li><a href="/gotologin">INGRESÁ</a></li>
+                    <li><a href="/#">RANKING</a></li>
+                    <li><a href="#agenda-2030">AGENDA 2030</a></li>
+                    <li><a href="/gotoregister">REGISTRATE</a></li>
+                    <li style="background-color: rgb(44, 44, 44);"><a href="/game">JUGAR</a></li>
+                </ul>
+            </li>
+        </ul>
+        <a href="/gotoindex"><img src="img/logo.png" class="logo" alt="logo"></a>
+    </div>
+    <div class="user">
+        <a href="/gotologin"><img src="img/user.png" alt="user"></a> 
+    </div>
+</div>
+<div class="profile-container">
+    <div class="profile-container-mini">
+        <div class="form-profile-container">
+            <form action="/profile" method="PUT" class="form-input-login" id="formprofile" enctype="multipart/form-data">
+                <label for="nameId">Nombre</label>
+                <br>
+                <input type="text" id="nameId" value="{{info.name}}" class="user-input" placeholder="Nombre" disabled>
+                <br>
+                <br>
+                <label for="surnameId">Apellido</label>
+                <br>
+                <input type="text" id="surnameId" value="{{info.surname}}" class="user-input" placeholder="Apellido" disabled>
+                <br>
+                <br>
+                <label for="usersId">Usuario</label>
+                <br>
+                <input type="text" id="usersId" value="{{info.user}}" class="user-input" placeholder="Usuario" disabled     >
+                <label for="usersId"></label>
+                <br>
+                <br>
+                <label>Avatar</label>
+                <br>
+                <input style="margin-top: 10px; color: transparent;" id="imageId" type="file">
+                <br>
+                <br>
+                <input type="button" onclick="profile()" class="login-register-input" id="IdUser" name="{{info.idUsers}}" value="MODIFICAR">
+            </form>
+        </div>
+    </div>
+</div>
+<footer>
+    <p>&copy; Converti-Chiappetti-Moyano-Serdá</p>
+</footer> --}}
+
+<div class="header">
+    <div id="logo-menu" class="logo-menu">
+        <ul class="menu-horizontal">
+            <li>
+                <a><img src="img/menu.png" alt="menu" class="menu"></a>
+                <ul id="menu-vertical" class="menu-vertical">
+                    <li><a href="/gotologin">INGRESÁ</a></li>
+                    <li><a href="/#">RANKING</a></li>
+                    <li><a href="#agenda-2030">AGENDA 2030</a></li>
+                    <li><a href="/gotoregister">REGISTRATE</a></li>
+                    <li style="background-color: rgb(44, 44, 44);"><a href="/game">JUGAR</a></li>
+                </ul>
+            </li>
+        </ul>
+        <a href="/gotoindex"><img src="img/logo.png" class="logo" alt="logo"></a>
+    </div>
+    <div class="user">
+        <a href="/gotologin"><img src="img/user.png" alt="user"></a> 
+    </div>
+</div>
+<div class="profile-container">
+    <div class="profile-container-mini">
+        <div class="profile-title">
+            <p>INFORMACIÓN DE TU CUENTA</p>
+        </div>
+        <div class="profile-info">
+                <div>
+                    <label for="nameId">Nombre</label>
+                    <input type="text" id="nameId" value="{{info.name}}" class="user-input" placeholder="Nombre" disabled>
+                </div>
+                <br>
+                <br>
+                <div>
+                    <label for="surnameId">Apellido</label>
+                    <input type="text" id="surnameId" value="{{info.surname}}" class="user-input" placeholder="Apellido" disabled>
+                </div>
+                <br>
+                <br>
+                <div>
+                    <label for="usersId">Usuario</label>
+                    <input type="text" id="usersId" value="{{info.user}}" class="user-input" placeholder="Usuario" disabled>
+                </div>
+                <br>
+                <br>
+                {{!-- <label>Avatar</label>
+                <br>
+                <input style="margin-top: 10px; color: transparent;" id="imageId" type="file">
+                <br>
+                <br> --}}
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; Converti-Chiappetti-Moyano-Serdá</p>
+</footer>
