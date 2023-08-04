@@ -1,0 +1,26 @@
+<div class="big-container">
+    <div class="container-input">
+        <div class="container-input-mini">
+            <h1>LOGIN</h1>
+            <br><br>
+            <form action="/gotoadmin" id="formadmin"></form>
+            <form action="/login" method="PUT" id="formlogin" class="form-input-login">
+                <input type="text" id="userId" value="" class="value-input" placeholder="Ingresar Usuario" required>
+                <label for="userId"></label>
+                <br>
+                <br>
+                <input type="password" id="passwordId" class="value-input" placeholder="Ingresar Contraseña" required>
+                <label for="passwordId"></label>
+                <br>
+                <br>
+                <a href="/gotoregister">¿No tienes cuenta?</a>
+                <br>
+                <br>
+                <input type="button" onclick="login()" class="login-register-input" value="LOGUEARSE">
+            </form>
+        </div>
+    </div>
+    <div class="container-image">
+        <img src="/img/ods-login-register.gif">
+    </div>
+</div>
