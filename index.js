@@ -283,7 +283,10 @@ app.get('/gotogame', async function(req, res){
         let dd=req.session.dataBase;
         req.session.dataBase=undefined;
         let right=req.session.score;
-        let wrong=dd.length-right;
+        let wrong=dd.length-right+1;
+        console.log(typeof dd.length, dd.length+1);
+        console.log(typeof right, right);
+        console.log(typeof wrong, wrong);
         await MySQL.realizarQuery(`insert into Ranking values("${req.session.user}", ${req.session.score*100},${right},${wrong})`);
         req.session.score=0;
         console.log("req.session.score",req.session.score)
