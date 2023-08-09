@@ -23,18 +23,11 @@ app.use(session({secret: '123456', resave: true, saveUninitialized: true}));
 
 const Listen_Port = 5000; 
 
-var image_number = 0;
-
 app.listen(Listen_Port, function() {
     console.log('Servidor NodeJS corriendo en http://localhost:' + Listen_Port + '/');
 });
 
 app.get('/', function(req, res){
-    fs.unlink("./public/uploads/BIANCHI 5.jpg", function (err){
-        if (!err){
-            console.log("Deleted file!")
-        }
-    });
     try{
         if (req.session.user != undefined){
             if (req.session.object[0].avatar==null){
@@ -69,12 +62,13 @@ app.get('/gotoroulette', function(req, res){
     res.render('roulette', null)
 });
 
-app.get('/gotoindex', async function(req, res){         
+app.get('/gotoindex', async function(req, res){ 
     if (req.session.user != undefined){
         if (req.session.object[0].avatar==null){
             res.render('index2', {user: req.session.user, img:"user.png"})
+        } else {
+            res.render('index2', {user: req.session.user, img:req.session.object[0].avatar})
         }
-        res.render('index2', {user: req.session.user, img:req.session.object[0].avatar})
     } else {
         res.render('index', {user: req.session.user})
     }
@@ -85,16 +79,13 @@ app.get('/gotologin', function(req, res){
 });
 
 app.get('/login', function(req, res){
-    try{
-        if (req.session.user != undefined){
-            if (req.session.object[0].avatar==null){
-                res.render('index2', {user: req.session.user, img:"user.png"})
-            }
-            res.render('index2', {user: req.session.user, img: req.session.object[0].avatar})
+    if (req.session.user != undefined){
+        if (req.session.object[0].avatar==null){
+            res.render('index2', {user: req.session.user, img:"user.png"})
         } else {
-            res.render('index', {user: req.session.user})
+            res.render('index2', {user: req.session.user, img:req.session.object[0].avatar})
         }
-    }catch(error){
+    } else {
         res.render('index', {user: req.session.user})
     }
 })
@@ -103,17 +94,18 @@ app.get('/gotoregister', function(req, res){
     res.render('register', null); 
 });
 
+app.get('/hola', function(req, res){
+    res.render('hola', {hola:"3"});
+})
+
 app.get('/register', function(req, res){
-    try{
-        if (req.session.user != undefined){
-            if (req.session.object[0].avatar==null){
-                res.render('index2', {user: req.session.user, img:"user.png"})
-            }
-            res.render('index2', {user: req.session.user, img: req.session.object[0].avatar})
+    if (req.session.user != undefined){
+        if (req.session.object[0].avatar==null){
+            res.render('index2', {user: req.session.user, img:"user.png"})
         } else {
-            res.render('index', {user: req.session.user})
+            res.render('index2', {user: req.session.user, img:req.session.object[0].avatar})
         }
-    }catch(error){
+    } else {
         res.render('index', {user: req.session.user})
     }
 })
@@ -155,32 +147,26 @@ app.get('/logout', function(req,res){
 });
 
 app.get('/profile', async function(req,res){
-    try{
-        if (req.session.user != undefined){
-            if (req.session.object[0].avatar==null){
-                res.render('profile', {user: req.session.user, img:"user.png"})
-            }
-            res.render('profile', {user: req.session.user, img: req.session.object[0].avatar, info: req.session.object[0]})
+    if (req.session.user != undefined){
+        if (req.session.object[0].avatar==null){
+            res.render('profile', {user: req.session.user, img:"user.png", info: req.session.object[0]})
         } else {
-            res.render('index', {user: req.session.user})
+            res.render('profile', {user: req.session.user, img: req.session.object[0].avatar, info: req.session.object[0]})
         }
-    }catch(error){
-        res.render('index', {user: req.session.user})
+    } else {
+        res.render('index', {user: req.session.user, img:"user.png"})
     }
 });
 
 app.get('/profileedit', async function(req,res){
-    try{
-        if (req.session.user != undefined){
-            if (req.session.object[0].avatar==null){
-                res.render('profileedit', {user: req.session.user, img:"user.png"})
-            }
-            res.render('profileedit', {user: req.session.user, img: req.session.object[0].avatar, info: req.session.object[0]})
+    if (req.session.user != undefined){
+        if (req.session.object[0].avatar==null){
+            res.render('profileedit', {user: req.session.user, img:"user.png", info: req.session.object[0]})
         } else {
-            res.render('index', {user: req.session.user})
+            res.render('profileedit', {user: req.session.user, img: req.session.object[0].avatar, info: req.session.object[0]})
         }
-    }catch(error){
-        res.render('index', {user: req.session.user})
+    } else {
+        res.render('index', {user: req.session.user, img:"user.png"})
     }
 });
 
@@ -253,29 +239,6 @@ app.put('/questionmodify', async function(req, res) {
     res.send({validar: true});
 });
 
-app.post('/profilemodify', async function(req,res) {
-    data_base = await MySQL.realizarQuery(`SELECT * FROM UsersProyecto WHERE user = "${req.body.user}";`); 
-    if (data_base.length == 0){
-        await MySQL.realizarQuery(`UPDATE UsersProyecto SET user = "${req.body.user}", name = "${req.body.name}", surname = "${req.body.surname}", description = "${req.body.description}" WHERE idUsers = "${req.body.id}";`);
-        req.session.object = await MySQL.realizarQuery(`SELECT * FROM UsersProyecto WHERE user = "${req.body.user}";`);
-        req.session.user = req.session.object[0].user;
-        res.send({validar: true});
-    } else {
-        if (req.session.user == req.body.user){
-            await MySQL.realizarQuery(`UPDATE UsersProyecto SET surname = "${req.body.surname}", name = "${req.body.name}", description = "${req.body.description}" WHERE idUsers = "${req.body.id}";`);
-            req.session.object = await MySQL.realizarQuery(`SELECT * FROM UsersProyecto WHERE user = "${req.body.user}";`);
-            req.session.user = req.session.object[0].user;
-            res.send({validar: true});
-        } else {
-            await MySQL.realizarQuery(`UPDATE UsersProyecto SET surname = "${req.body.surname}", name = "${req.body.name}", description = "${req.body.description}" WHERE idUsers = "${req.body.id}";`);
-            req.session.object = await MySQL.realizarQuery(`SELECT * FROM UsersProyecto WHERE user = "${req.body.user}";`);
-            req.session.user = req.session.object[0].user;
-            res.send({validar: false});
-        }
-            
-    }
-})
-
 app.put('/categoryreceive', async function(req, res){
     req.session.category = req.body.category;
     console.log(req.session.category);
@@ -323,8 +286,7 @@ app.put('/randomQuestion', async function(req,res){
     res.send({question: req.session.question, score: req.session.score});
 });
 
-app.post('/upload2', async function (req,res){
-    console.log(req.files)
+app.post('/profilemodify', async function (req,res){
     data_base = await MySQL.realizarQuery(`SELECT * FROM UsersProyecto WHERE user = "${req.body.user}";`); 
     if (data_base.length == 0){
         await MySQL.realizarQuery(`UPDATE UsersProyecto SET user = "${req.body.user}", name = "${req.body.name}", surname = "${req.body.surname}", description = "${req.body.description}" WHERE idUsers = "${req.body.id}";`);
@@ -347,13 +309,24 @@ app.post('/upload2', async function (req,res){
     }
 })
 
-
-
 app.post('/upload', async function (req,res){
     if (req.files){
+        
+        let numberArray = await MySQL.realizarQuery(`Select avatar From UsersProyecto WHERE avatar IS NOT NULL;`);
+        let sorted = [];
+        for (let i = 0; i<numberArray.length; i++){
+            let number = numberArray[i].avatar.slice(5,numberArray[i].avatar.length);
+            if (numberArray[i].avatar.includes(".jpeg")){
+                number = number.slice(0, number.length-5)
+            } else {
+                number = number.slice(0, number.length-4)
+            }
+            sorted.push(parseInt(number));
+        }
+        let numberImage = parseInt(Math.max(...sorted)) + 1
+
         let f_upload = req.files.f_upload;
-        f_upload.name = "image" + image_number + "." + f_upload.mimetype.slice(6,f_upload.mimetype.length);
-        image_number = image_number + 1;
+        f_upload.name = "image" + numberImage + "." + f_upload.mimetype.slice(6,f_upload.mimetype.length);
     
         const ext = mod_path.extname(f_upload.name);
         const ext_allowed = ['.png', '.jpg', '.jpeg'];
@@ -369,6 +342,13 @@ app.post('/upload', async function (req,res){
                 mensaje = "Ocurrio un error al subir el archivo: " + err 
             }
             let img_name = await MySQL.realizarQuery(`Select avatar From UsersProyecto Where user = "${req.session.user}"`)
+            if (img_name != null){
+                fs.unlink("./public/uploads/"+img_name[0].avatar, function(err){
+                    if (!err){
+                        console.log("Deleted File!")
+                    }
+                });
+            }
             await MySQL.realizarQuery(`UPDATE UsersProyecto SET avatar = "${f_upload.name}"WHERE user = "${req.session.user}";`);
             req.session.object = await MySQL.realizarQuery(`SELECT * FROM UsersProyecto WHERE user = "${req.session.user}";`);
             res.render('profile', {info: req.session.object[0], img: req.session.object[0].avatar});

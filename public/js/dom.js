@@ -208,7 +208,7 @@ function questionModify() {
 
 async function fetchProfileModify(data){
   try {
-        const response = await fetch("/upload2", {
+        const response = await fetch("/profilemodify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
