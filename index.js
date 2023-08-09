@@ -324,3 +324,4 @@ app.put('/randomQuestion', async function(req,res){
     res.send({score: req.session.score});
 });
 //algo para subir
+//12.30
