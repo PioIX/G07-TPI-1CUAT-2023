@@ -1,0 +1,6 @@
+npm install express-fileupload
+npm install express-session
+
+req.session.destroy()
+
+Hacer usuarios "ANONIMO###"

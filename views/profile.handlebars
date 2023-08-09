@@ -1,0 +1,55 @@
+<div class="header">
+    <div class="logo-menu">
+        <ul class="menu-horizontal">
+            <li>
+                <a><img src="img/menu.png" alt="menu" class="menu"></a>
+                <ul id="menu-vertical" class="menu-vertical">
+                    <li><a href="/gotoroulette">JUGAR</a></li>
+                    <li><a href="#agenda-2030">AGENDA 2030</a></li>
+                    <li><a href="/gotoranking">TOP 5</a></li>
+                    <li><a href="/profile">PERFIL</a></li>
+                    <li style="background-color: rgb(44, 44, 44);"><a href="/logout">LOG-OUT</a></li>
+                </ul>
+            </li>
+        </ul>
+        <a href="/gotoindex"><img src="img/logo.png" class="logo" alt="logo"></a>
+    </div>
+    <div class="user">
+        <a href="/profile"><img src="img/user.png" alt="user"></a> 
+    </div>
+</div>
+<div class="profile-container">
+    <div class="profile-container-mini">
+        <div class="profile-title">
+            <p>INFORMACIÓN DE TU CUENTA</p><a href="/profileedit"><img src="img/editar2.png" class="edit" alt="edit"></a>
+        </div>
+        <form action="/profile" method="PUT" class="form-input-login" id="formprofile" enctype="multipart/form-data"></form>
+        <div class="profile-info">
+            <div class="profile-info-1">
+                <div>
+                    <label for="nameId">Nombre</label>
+                    <br>
+                    <input type="text" id="nameId" value="{{info.name}}" class="user-input" placeholder="Nombre" disabled>
+                </div>
+                <div>
+                    <label for="surnameId">Apellido</label>
+                    <br>
+                    <input type="text" id="surnameId" value="{{info.surname}}" class="user-input" placeholder="Apellido" disabled>
+                </div>
+                <div>
+                    <label for="usersId">Usuario</label>
+                    <br>
+                    <input type="text" id="usersId" value="{{info.user}}" class="user-input" placeholder="Usuario" disabled     >
+                </div>
+            </div>
+            <div class="profile-info-2">
+                <div class="profile-info-2-mini">
+                    <label for="description">Descripción</label>
+                    <br>
+                    <textarea placeholder="Descripción" class="description" id="description" name="description" rows="4" cols="50" disabled>{{info.description}}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

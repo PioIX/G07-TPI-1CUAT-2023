@@ -1,0 +1,32 @@
+<form action="/playGround" method="GET" id="formQuestion" class="form-input-login"></form>
+<div class="game-container">
+    <div class="question">
+        <h1>{{data.question}}</h1>
+    </div>
+    <div class="game-container-mini-answers">
+        <div class="question-number">
+            <p id="count">{{count}}</p>
+        </div>
+        <div class="answers">
+            <div class="answer">
+                <input type="button" onclick="newQuestionWrong()" class="login-register-input" style="margin-bottom: 0px;" value="{{data.answer_1}}" id="wrongQuestion1">
+                <label for="wrongQuestion1"></label>
+            </div>  
+            <div class="answer">
+                <input type="button" class="login-register-input"style="margin-bottom: 0px;" value="{{data.answer_2}}" onclick="newQuestionWrong()" id="wrongQuestion2">
+                <label for="wrongQuestion2"></label>
+            </div>
+            <div class="answer" >
+                <input type="button" class="login-register-input"style="margin-bottom: 0px;" value="{{data.answer_correct}}" onclick="newQuestionRight()" id="rightQuestion">
+                <label for="rightQuestion"></label>
+            </div>
+        </div>
+        <div class="timer">
+            <p>30</p>
+        </div>
+    </div>
+</div>
+</form>
+<footer>
+    <p>&copy; Converti-Chiappetti-Moyano-Serdá</p>
+</footer>
