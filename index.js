@@ -269,6 +269,9 @@ app.put('/categoryreceive', async function(req, res){
 })
 app.get('/gotogame', async function(req, res){
     // || req.session.score>=req.session.dataBase.length+1
+    if(req.session.category==4 || req.session.category==undefined){
+        req.session.category==1
+    }
     if(req.session.dataBase==undefined){
         req.session.dataBase=await MySQL.realizarQuery(`SELECT * FROM Questions WHERE category=${req.session.category}`);
         dataBase=req.session.dataBase
@@ -277,17 +280,19 @@ app.get('/gotogame', async function(req, res){
     let data1=dataBase[random];
     console.log("score' del gotogame session", req.session.score);
     if(dataBase.length==0){
+        let dd=req.session.dataBase;
         req.session.dataBase=undefined;
-        await MySQL.realizarQuery(`insert into Ranking values("${req.session.user}", ${req.session.score*100},null,null)`);
+        let right=req.session.score;
+        let wrong=dd.length-right;
+        await MySQL.realizarQuery(`insert into Ranking values("${req.session.user}", ${req.session.score*100},${right},${wrong})`);
         req.session.score=0;
         console.log("req.session.score",req.session.score)
         res.render('index', {user:req.session.user})
     }
     else{
-        res.render('game', {data: data1, count: req.session.score}); 
+        res.render('game', {data: data1, count: req.session.score});
         dataBase.splice(random,1);
     }
-    
 });
 let dataBase=[];
 app.put('/randomQuestion', async function(req,res){
@@ -298,9 +303,6 @@ app.put('/randomQuestion', async function(req,res){
         req.session.score=req.session.score+1;
     }
     // console.log("randomQuestion", req.session.category);
-    if(req.session.category==4 || req.session.category==undefined){
-        req.session.category==1
-    }
     // console.log("postrandomQuestion",req.session.category);
     if(req.session.score==undefined ){
         req.session.score=0;
