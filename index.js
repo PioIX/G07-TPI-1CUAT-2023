@@ -317,3 +317,4 @@ app.put('/randomQuestion', async function(req,res){
     // res.send({question: req.session.question, score: req.session.score});
     res.send({score: req.session.score});
 });
+//algo para subir
