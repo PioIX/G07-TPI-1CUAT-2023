@@ -1,0 +1,12 @@
+npm install express-fileupload
+npm install express-session
+
+req.session.destroy()
+
+Hacer usuarios "ANONIMO###"
+
+https://www.geeksforgeeks.org/node-js-fs-unlink-method/
+
+FULANITO FOTOS DE PIC DISTINTA
+
+cambie lo del tiempor cuando se termina el juego

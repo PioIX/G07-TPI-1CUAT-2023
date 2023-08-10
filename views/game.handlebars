@@ -1,0 +1,32 @@
+<form action="/playGround" method="PUT" id="formQuestion" class="form-input-login"></form>
+<div class="game-container">
+    <div class="question">
+        <div class="question-decoration">
+            <h1>{{question}}</h1>
+        </div>
+    </div>
+    <div class="game-container-mini-answers">
+        <div class="question-number">
+            <div class="count-decoration">
+                <p id="count">{{count}}</p>
+            </div>
+        </div>
+        <div class="answers">
+            <div class="answer">
+                <button id="question1" value="{{right_answer}}" onclick="question('{{answer_1}}')">{{answer_1}}</button>
+            </div>  
+            <div class="answer">
+                <button id="question2" value="{{right_answer}}" onclick="question('{{answer_2}}')">{{answer_2}}</button>
+            </div>
+            <div class="answer" >
+                <button id="question3" value="{{right_answer}}" onclick="question('{{answer_3}}')">{{answer_3}}</button>
+            </div>
+        </div>
+        <div id="timer-container" class="question-number">
+            <div id="timer" class="count-decoration">
+                <p>30</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/timer.js"></script>

@@ -1,0 +1,17 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div style="width: 300px; height:300px">
+    <canvas id="stats" width="300" height="300"></canvas>
+</div>
+<script>
+    var stats = document.getElementById("stats").getContext("2d");
+    var Chart = new Chart(stats,{
+        type:"line",
+        data:{
+            labels:["1",{{hola}},"3"], 
+            datasets:[{
+                label:"hola",
+                data:[1,10,3]
+            }]
+        }
+    })
+</script>
