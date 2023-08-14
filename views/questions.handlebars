@@ -1,0 +1,144 @@
+{{!-- 
+<div class="users-questions-container">
+    <div class="add-questions" id="add-questions">
+        <div class="modify-questions-form" id="modify-questions-form">
+            <div class="temp">
+                <div>
+                    <p>Se termino la partida</p>
+                </div>
+                <div class="up">
+                    <div>
+                        <p>ACIERTOS</p>
+                        <p>32</p>
+                    </div>
+                    <div>
+                        <p>ERRORES</p>
+                        <p>32</p>
+                    </div>
+                    <div>
+                        <p>%</p>
+                        <p>32</p>
+                    </div>
+                </div>
+                <div>
+                    <img src="img/triste.jpg" width="500" height="500">
+                    <p>Lo intentaste!</p>
+                </div>
+                <button>asdasj</button>
+            </div>
+        </div>
+    </div>
+    <div class="questions-outer-wrapper">
+        <div class="questions-table-wrapper">
+            <table>
+                <thead>
+                    <th>PREGUNTA</th>
+                    <th>RESPUESTA N°1</th>
+                    <th>RESPUESTA N°2</th>
+                    <th>RESPUESTA CORRECTA</th>
+                    <th>CATEGORIA</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    {{# each users}}
+                        <tr>    
+                            <td>{{question}}</td>
+                            <td>{{answer_1}}</td>
+                            <td>{{answer_2}}</td>
+                            <td>{{answer_correct}}</td>
+                            <td style="width: 0px;">{{category}}</td>
+                            <td style="width: 0px;"><button style="font-size:18px" class="x" onclick="questionRemove({{idQuestion}})">❌</button><button class="x" onclick="showModifyQuestion('{{idQuestion}}', '{{question}}', '{{answer_1}}', '{{answer_2}}', '{{answer_correct}}', {{category}})">❓</button><button class="x" onclick="showAddQuestion()">➕</button></td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> --}}
+
+
+
+
+<div class="users-questions-container">
+    <div class="add-questions" id="add-questions">
+        <form action="/questions" id="formquestionremove"></form>
+        <div class="add-questions-form" id="add-questions-form">
+            <form class="form-input-register" action="/questions" method="PUT" id="formquestionadd">
+                <input type="text" id="questionId" value="" class="value-input" placeholder="Pregunta" required>
+                <label for="questionId"></label>
+                <br>
+                <br>
+                <input type="text" id="answer_1Id" value="" class="value-input" placeholder="Respuesta n°1" required>
+                <label for="answer_1Id"></label>
+                <br>
+                <br>
+                <input type="text" id="answer_2Id" value="" class="value-input" placeholder="Respuesta n°2" required>
+                <label for="answer_2Id"></label>
+                <br>
+                <br>
+                <input type="text" id="answer_correctId" value="" class="value-input" placeholder="Respuesta Correcta" required>
+                <label for="answer_correctId"></label>
+                <br>
+                <br>
+                <input type="text" id="categoryId" value="" class="value-input" placeholder="Categoria" required>
+                <label for="categoryId"></label>
+                <br>
+                <br>
+                <input type="button" onclick=" questionAdd()" class="login-register-input" value="AÑADIR"> 
+                <input type="button" onclick="showAddQuestion()" class="login-register-input" value="ATRÁS">
+            </form>
+        </div>
+        <div class="modify-questions-form" id="modify-questions-form">
+            <form class="form-input-register" action="/questions" method="PUT" id="formquestionmodify">
+                <input type="text" id="questionId2" value="" class="value-input" placeholder="Pregunta" required>
+                <label for="questionId2"></label>
+                <br>
+                <br>
+                <input type="text" id="answer_1Id2" value="" class="value-input" placeholder="Respuesta n°1" required>
+                <label for="answer_1Id2"></label>
+                <br>
+                <br>
+                <input type="text" id="answer_2Id2" value="" class="value-input" placeholder="Respuesta n°2" required>
+                <label for="answer_2Id2"></label>
+                <br>
+                <br>
+                <input type="text" id="answer_correctId2" value="" class="value-input" placeholder="Respuesta Correcta" required>
+                <label for="answer_correctId2"></label>
+                <br>
+                <br>
+                <input type="text" id="categoryId2" value="" class="value-input" placeholder="Categoria" required>
+                <label for="categoryId2"></label>
+                <br>
+                <br>
+                <input type="button" onclick=" questionModify()" class="login-register-input" value="MODIFICAR"> 
+                <input type="button" id="back" onclick="showModifyQuestion()" class="login-register-input" value="ATRÁS">
+            </form>
+        </div>
+    </div>
+    <div class="questions-outer-wrapper">
+        <div class="questions-table-wrapper">
+            <table>
+                <thead>
+                    <th>PREGUNTA</th>
+                    <th>RESPUESTA N°1</th>
+                    <th>RESPUESTA N°2</th>
+                    <th>RESPUESTA CORRECTA</th>
+                    <th>CATEGORIA</th>
+                    <th></th>
+                </thead>
+                <tbody>
+                    {{# each users}}
+                        <tr>    
+                            <td>{{question}}</td>
+                            <td>{{answer_1}}</td>
+                            <td>{{answer_2}}</td>
+                            <td>{{answer_correct}}</td>
+                            <td style="width: 0px;">{{category}}</td>
+                            <td style="width: 0px;"><button style="font-size:18px" class="x" onclick="questionRemove({{idQuestion}})">❌</button><button class="x" onclick="showModifyQuestion('{{idQuestion}}', '{{question}}', '{{answer_1}}', '{{answer_2}}', '{{answer_correct}}', {{category}})">❓</button><button class="x" onclick="showAddQuestion()">➕</button></td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

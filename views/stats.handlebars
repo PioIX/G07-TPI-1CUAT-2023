@@ -1,0 +1,71 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="header">
+    <div class="logo-menu">
+        <ul class="menu-horizontal">
+            <li>
+                <a><img src="img/menu.png" alt="menu" class="menu"></a>
+                <ul id="menu-vertical" class="menu-vertical">
+                    <li><a href="/gotoroulette">JUGAR</a></li>
+                    <li><a href="#agenda-2030">AGENDA 2030</a></li>
+                    <li><a href="/gotoranking">TOP 5</a></li>
+                    <li><a href="/profile">PERFIL</a></li>
+                    <li style="background-color: rgb(44, 44, 44);"><a href="/logout">LOG-OUT</a></li>
+                </ul>
+            </li>
+        </ul>
+        <a href="/gotoindex"><img src="img/logo.png" class="logo" alt="logo"></a>
+    </div>
+    <div class="user">
+        <p>{{user}}</p><a href="/profile"><img src="uploads/{{img}}" alt="user"></a> 
+    </div>
+</div>
+<div class="profile-container">
+    <div class="profile-container-mini">
+        <div class="profile-title">
+            <p>INFORMACIÓN DE TU CUENTA</p><a href="/profileedit"><img src="img/editar2.png" class="edit" alt="edit"></a>
+        </div>
+        <form action="/profile" method="PUT" class="form-input-login" id="formprofile" enctype="multipart/form-data"></form>
+        <div class="profile-info">
+            <div class="profile-info-1">
+                <div>
+                    <label for="nameId">Respuestas<br> Correctas</label>
+                    <br>
+                    <p>{{base.correct_answers}}</p>
+                </div>
+                <div>
+                    <label for="surnameId">Respuestas<br> Incorrectas</label>
+                    <br>
+                    <p>{{base.wrong_answers}}</p>
+                </div>
+                <div>
+                    <label for="usersId">Porcentaje<br> Acierto</label>
+                    <br>
+                    <p>{{percent}}%</p>
+                </div>
+                <div>
+                    <label for="usersId">Partitdas<br>Jugados</label>
+                    <br>
+                    <p>{{base.games_played}}</p>
+                </div>
+            </div>
+            <div class="profile-info-2">
+                <div style="width: 300px; height:300px">
+                    <canvas id="stats" width="300" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var stats = document.getElementById("stats").getContext("2d");
+    var Chart = new Chart(stats,{
+        type:"line",
+        data:{
+            labels:[{{label}}], 
+            datasets:[{
+                label:"Respuestas Correctas x Juego",
+                data:[{{datas}}]
+            }]
+        }
+    })
+</script>

@@ -1,0 +1,67 @@
+<div class="header">
+    <div class="logo-menu">
+        <ul class="menu-horizontal">
+            <li>
+                <a><img src="img/menu.png" alt="menu" class="menu"></a>
+                <ul id="menu-vertical" class="menu-vertical">
+                    <li><a href="/gotoroulette">JUGAR</a></li>
+                    <li><a href="#agenda-2030">AGENDA 2030</a></li>
+                    <li><a href="/gotoranking">TOP 5</a></li>
+                    <li><a href="/profile">PERFIL</a></li>
+                    <li style="background-color: rgb(44, 44, 44);"><a href="/logout">LOG-OUT</a></li>
+                </ul>
+            </li>
+        </ul>
+        <a href="/gotoindex"><img src="img/logo.png" class="logo" alt="logo"></a>
+    </div>
+    <div class="user">
+        <p>{{user}}</p><a href="/profile"><img src="uploads/{{img}}" alt="user"></a> 
+    </div>
+</div>
+<div class="profile-container">
+    <div class="profile-container-mini">
+        <div class="profile-title">
+            <p>INFORMACIÓN DE TU CUENTA</p>
+        </div>
+        <form action="/profile" method="PUT" class="form-input-login" id="formprofile" enctype="multipart/form-data"></form>
+        <div class="profile-info">
+            <div class="profile-info-1">
+                <div>
+                    <label for="nameId">Nombre</label>
+                    <br>
+                    <input type="text" id="nameId" value="{{info.name}}" class="user-input" placeholder="Nombre">
+                </div>
+                <div>
+                    <label for="surnameId">Apellido</label>
+                    <br>
+                    <input type="text" id="surnameId" value="{{info.surname}}" class="user-input" placeholder="Apellido">
+                </div>
+                <div>
+                    <label for="usersId">Usuario</label>
+                    <br>
+                    <input type="text" id="usersId" value="{{info.user}}" class="user-input" placeholder="Usuario">
+                </div>
+            </div>
+            <div class="profile-info-2">
+                <div class="profile-info-2-mini">
+                    <label style="margin-bottom: 10px;" for="description">Descripción</label>
+                    <textarea placeholder="Descripción" class="description" id="description" name="description" rows="4" cols="50">{{info.description}}</textarea>
+                </div>
+                <div class="profile-info-2-mini">
+                    <form action='/upload' method="POST" id="imageform" enctype="multipart/form-data">
+                        <label style="margin-bottom: 10px;">Avatar</label>
+                        <br>
+                        <label for="imageId" class="custom-file-upload">
+                            <input id="imageId" type="file" name="f_upload">
+                            <span class="upload_file">Subir archivo</span>
+                        </label>
+                    </form>
+                </div>
+            </div>
+            <div class="profile-info-3">
+                <input type="button" onclick="profile()" class="login-register-input" id="IdUser" name="{{info.idUsers}}" value="MODIFICAR">
+            </div>
+        </div>
+    </div>
+</div>
+
