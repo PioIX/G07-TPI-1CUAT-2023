@@ -1,0 +1,60 @@
+
+<div class="game-container">
+    <div class="add-questions" id="add-questions">
+        <div class="pop-up" id="pop-up">
+                <div class="temp-title">
+                    <p>Se termino la partida!!!</p>
+                </div>
+                <div class="up">
+                    <div id="rights">
+                    </div>
+                    <div id="wrongs">
+                    </div>
+                </div>
+                <div id="message" class="message">
+                </div>
+                <div class="message-button-container">
+                    <a href='/gotogame' class="message-button">VOLVER</a>
+                </div>
+        </div>
+    </div>
+    <div>
+        <div class="question">
+            <div class="question-decoration">
+                <h1>{{question}}</h1>
+            </div>
+        </div>
+        <div class="game-container-mini-answers">
+            <div class="question-number">
+                <div id = "count-container" class="count-decoration">
+                    <p id="count">{{count}}</p>
+                </div>
+            </div>
+            <div class="answers">
+                <div class="answer">
+                    <button id="question1" value="{{right_answer}}" name="{{answer_1}}" onclick="question('{{answer_1}}', 1)">{{answer_1}}</button>
+                </div>  
+                <div class="answer">
+                    <button id="question2" value="{{right_answer}}" name="{{answer_2}}" onclick="question('{{answer_2}}', 2)">{{answer_2}}</button>
+                </div>
+                <div class="answer" >
+                    <button id="question3" value="{{right_answer}}" name="{{answer_3}}" onclick="question('{{answer_3}}', 3)">{{answer_3}}</button>
+                </div>
+                <div id="timer-container-mini" class="question-number-small">
+                    <div id="timer-mini" class="count-decoration">
+                        <p>30</p>
+                    </div>
+                    <div id = "count-container" class="count-decoration">
+                        <p id="count">{{count}}</p>
+                    </div>
+                </div>
+            </div>
+            <div id="timer-container" class="question-number">
+                <div id="timer" class="count-decoration">
+                    <p>30</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/timer.js"></script>

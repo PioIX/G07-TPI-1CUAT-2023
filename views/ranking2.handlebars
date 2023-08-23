@@ -1,0 +1,37 @@
+<div class="header">
+    <div class="logo-menu">
+        <ul class="menu-horizontal">
+            <li>
+                <a><img src="img/menu.png" alt="menu" class="menu"></a>
+                <ul id="menu-vertical" class="menu-vertical">
+                    <li><a href="/gotoroulette">JUGAR</a></li>
+                    <li><a href="/agenda2030">AGENDA 2030</a></li>
+                    <li><a href="/gotoranking">TOP 5</a></li>
+                    <li><a href="/profile">PERFIL</a></li>
+                    <li style="background-color: rgb(44, 44, 44);"><a href="/logout">LOG-OUT</a></li>
+                </ul>
+            </li>
+        </ul>
+        <a href="/gotoindex"><img src="img/logo.png" class="logo" alt="logo"></a>
+    </div>
+    <div class="user">
+        <p>{{user}}</p><a href="/profile"><img src="uploads/{{img}}" alt="user"></a> 
+    </div>
+</div>
+
+<div class="container-ranking">
+    <div class="container-ranking-mini">
+        <div class="ranking-title">
+            <h1>TOP 5 HISTÓRICO</h1>
+        </div>
+        {{# each base}}
+            <div class="ranking-user">
+                <div class="ranking-user-mini">{{user}}</div>
+                <div class="ranking-user-mini">{{points}}</div>
+            </div>
+        {{/each}}
+    </div>
+</div>
+<footer>
+    <p>&copy; Converti-Chiappetti-Moyano-Serdá</p>
+</footer>

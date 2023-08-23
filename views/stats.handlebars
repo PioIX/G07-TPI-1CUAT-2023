@@ -1,0 +1,120 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div class="header">
+    <div class="logo-menu">
+        <ul class="menu-horizontal">
+            <li>
+                <a><img src="img/menu.png" alt="menu" class="menu"></a>
+                <ul id="menu-vertical" class="menu-vertical">
+                    <li><a href="/gotoroulette">JUGAR</a></li>
+                    <li><a href="/agenda2030">AGENDA 2030</a></li>
+                    <li><a href="/gotoranking">TOP 5</a></li>
+                    <li><a href="/profile">PERFIL</a></li>
+                    <li style="background-color: rgb(44, 44, 44);"><a href="/logout">LOG-OUT</a></li>
+                </ul>
+            </li>
+        </ul>
+        <a href="/gotoindex"><img src="img/logo.png" class="logo" alt="logo"></a>
+    </div>
+    <div class="user">
+        <p>{{user}}</p><a href="/profile"><img src="uploads/{{img}}" alt="user"></a> 
+    </div>
+</div>
+<div class="profile-container">
+    <div class="profile-container-mini">
+        <div class="profile-title">
+            <p>INFORMACIÓN DE TU CUENTA</p><a href="/profileedit"><img src="img/editar2.png" class="edit" alt="edit"></a>
+        </div>
+        <div class="profile-info">
+            <div class="profile-info-1-stats">
+                <div>
+                    <p class="title-numbers-temp">Respuestas<br> Correctas</p>
+                    <p class="number-numbers-temp">{{base.correct_answers}}</p>
+                </div>
+                <div>
+                    <p class="title-numbers-temp">Respuestas<br> Incorrectas</p>
+                    <p class="number-numbers-temp">{{base.wrong_answers}}</p>
+                </div>
+                <div>
+                    <p class="title-numbers-temp">Porcentaje<br> Acierto</p>
+                    <p class="number-numbers-temp">{{percent}}%</p>
+                </div>
+                <div>
+                    <p class="title-numbers-temp">Partidas<br>Jugados</p>
+                    <p class="number-numbers-temp">{{base.games_played}}</p>
+                </div>
+            </div>
+            <div class="profile-info-2-stats">
+                    <canvas id="stats" class="profile-graph"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var stats = document.getElementById("stats").getContext("2d");
+    stats.canvas.parentNode.style.height = '70%';
+    stats.canvas.parentNode.style.width = '100%';
+    let msg;
+    if ([{{label}}].length == 0){
+        msg = "Juega una partida para obtener más estadísticas";
+    } else {
+        msg = "Respuestas Correctas x Juego";
+    }
+    var Chart = new Chart(stats,{
+        type:"line",
+        data:{
+            labels:[{{label}}], 
+            datasets:[{
+                label:"Respuestas Correctas x Juego",
+                data:[{{datas}}],
+                backgroundColor: [
+                    'rgb(255, 153, 102)', // Los puntitos
+                ],
+                borderColor: 'rgb(255, 153, 102)', // La línea
+                // fill: false,
+                // stepped: true,
+                pointStyle: 'circle',
+                pointRadius: 7,
+                pointHoverRadius: 9,
+                borderWidth: 3,
+            }]
+        },
+        
+        options: {
+            plugins:{
+                legend:{
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: msg,
+                    color: 'rgb(0,0,0)',
+                    font: {
+                        family: 'Titan One',
+                        size: 20,
+                    },
+                    padding: {top: 0, left: 0, right: 0, bottom: 20}
+                }
+            },
+            scales:{
+                y: {
+                    beginAtZero: true,
+                    max: 4,
+                    min: 0,
+                    grid:{
+                        color:"rgb(0,0,0)",
+                        display: true
+                    },
+                    ticks: {
+                        stepSize: 1
+                    },
+                },
+                x: {
+                    grid:{
+                        color:"rgb(0,0,0)",
+                        display: true
+                    }
+                }
+            },
+        }
+    })
+</script>
